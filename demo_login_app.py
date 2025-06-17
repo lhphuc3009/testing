@@ -16,13 +16,16 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-name, auth_status, username = authenticator.login("Login", "main")
+name, authentication_status, username = authenticator.login("Login", "main")
 
-if auth_status:
+if authentication_status:
     st.success(f"Chào mừng {name}!")
     authenticator.logout("Đăng xuất", "sidebar")
-elif auth_status is False:
+
+elif authentication_status is False:
     st.error("Sai tên đăng nhập hoặc mật khẩu")
-elif auth_status is None:
+
+elif authentication_status is None:
     st.warning("Vui lòng nhập thông tin đăng nhập")
+
 
