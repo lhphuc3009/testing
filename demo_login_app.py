@@ -17,7 +17,7 @@ authenticator = stauth.Authenticate(
 )
 
 name, authentication_status, username = authenticator.login("Login", "main")
-
+st.write("DEBUG:", name, authentication_status, username)
 if authentication_status:
     st.success(f"Chào mừng {name}!")
     authenticator.logout("Đăng xuất", "sidebar")
