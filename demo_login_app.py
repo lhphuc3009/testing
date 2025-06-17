@@ -16,12 +16,13 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-authenticator.login()
+name, auth_status, username = authenticator.login("Login", "main")
 
-if st.session_state.get("authentication_status"):
-    st.success(f"Chào mừng {st.session_state['name']}!")
+if auth_status:
+    st.success(f"Chào mừng {name}!")
     authenticator.logout("Đăng xuất", "sidebar")
-elif st.session_state.get("authentication_status") is False:
+elif auth_status is False:
     st.error("Sai tên đăng nhập hoặc mật khẩu")
-elif st.session_state.get("authentication_status") is None:
+elif auth_status is None:
     st.warning("Vui lòng nhập thông tin đăng nhập")
+
